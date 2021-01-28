@@ -14,10 +14,20 @@ import java.util.List;
 public class CustomerService {
 
     String customersJsonPath = "src/test/data/customers.json";
+    String customerJsonPath = "src/test/data/existingCustomer.json";
 
     public List<Customer> getCustomers() throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         File customersFile = new File(customersJsonPath);
         return mapper.readValue(customersFile, new TypeReference<ArrayList<Customer>>() {});
+    }
+
+    public Customer getCustomersById(String id) throws IOException {
+        for(Customer customer : getCustomers()){
+            if(customer.getId().equals(id)){
+                return customer;
+            }
+        }
+        return null;
     }
 }
