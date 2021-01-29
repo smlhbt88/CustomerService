@@ -2,10 +2,8 @@ package com.customerservice.CustomerService.controller;
 
 import com.customerservice.CustomerService.model.Customer;
 import com.customerservice.CustomerService.service.CustomerService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,16 +18,14 @@ public class CustomerController {
     }
 
     @GetMapping("/api/customers")
-    public List<Customer> getCustomers() throws IOException {
-        //System.out.print(customerService.getCustomers());
+    public List<Customer> getCustomers(){
         return  customerService.getCustomers();
     }
 
-    @GetMapping("/api/customers/{id}")
-    public Customer getCustomerById(@PathVariable String id) throws IOException {
-        return  customerService.getCustomerById(id);
+    @PostMapping("/api/customers")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Customer addCustomer(@RequestBody Customer customer){
+        return customerService.addCustomer(customer);
     }
-
-
 
 }
