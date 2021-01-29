@@ -10,7 +10,7 @@ import java.util.UUID;
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -48,11 +48,11 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
