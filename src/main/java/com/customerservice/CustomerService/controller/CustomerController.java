@@ -13,18 +13,21 @@ import java.util.List;
 @RestController
 public class CustomerController {
 
-    @Autowired
     CustomerService customerService;
+
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
 
     @GetMapping("/api/customers")
     public List<Customer> getCustomers() throws IOException {
+        //System.out.print(customerService.getCustomers());
         return  customerService.getCustomers();
     }
 
     @GetMapping("/api/customers/{id}")
-    public Customer getCustomersById(@PathVariable String id) throws IOException {
-        System.out.println(customerService.getCustomersById(id));
-        return  customerService.getCustomersById(id);
+    public Customer getCustomerById(@PathVariable String id) throws IOException {
+        return  customerService.getCustomerById(id);
     }
 
 

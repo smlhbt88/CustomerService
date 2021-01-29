@@ -1,6 +1,7 @@
 package com.customerservice.CustomerService.service;
 
 import com.customerservice.CustomerService.model.Customer;
+import com.customerservice.CustomerService.repository.CustomerRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
@@ -13,21 +14,20 @@ import java.util.List;
 @Service
 public class CustomerService {
 
-    String customersJsonPath = "src/test/data/customers.json";
-    String customerJsonPath = "src/test/data/existingCustomer.json";
+    private CustomerRepository customerRepository;
 
-    public List<Customer> getCustomers() throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        File customersFile = new File(customersJsonPath);
-        return mapper.readValue(customersFile, new TypeReference<ArrayList<Customer>>() {});
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
-    public Customer getCustomersById(String id) throws IOException {
-        for(Customer customer : getCustomers()){
-            if(customer.getId().equals(id)){
-                return customer;
-            }
-        }
+    public List<Customer> getCustomers() {
+        System.out.println(customerRepository.findAll());
+        return customerRepository.findAll();
+    }
+
+    public Customer getCustomerById(String id) {
         return null;
     }
+
+
 }

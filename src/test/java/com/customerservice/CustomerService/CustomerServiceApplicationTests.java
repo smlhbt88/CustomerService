@@ -1,6 +1,4 @@
 package com.customerservice.CustomerService;
-
-import com.customerservice.CustomerService.controller.CustomerController;
 import com.customerservice.CustomerService.model.Customer;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

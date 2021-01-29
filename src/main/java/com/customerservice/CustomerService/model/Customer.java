@@ -1,9 +1,16 @@
 package com.customerservice.CustomerService.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.UUID;
 
+@Entity
 public class Customer {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -14,7 +21,7 @@ public class Customer {
     public Customer(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.id = UUID.randomUUID().toString();
+        //this.id = UUID.randomUUID().toString();
     }
 
     public Customer(String firstName, String lastName, String phoneNumber, String address) {
@@ -22,7 +29,7 @@ public class Customer {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.id = UUID.randomUUID().toString();
+        //this.id = UUID.randomUUID().toString();
     }
 
     public String getFirstName() {
@@ -41,11 +48,11 @@ public class Customer {
         this.lastName = lastName;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
